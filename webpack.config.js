@@ -19,21 +19,20 @@ const jsLoaders = () => {
     }
   ]
 
-  if (isDev) {
-    loaders.push('eslint-loader')
-  }
+  // if (isDev) {
+  //   loaders.push('eslint-loader')
+  // }
   return loaders
 }
 
 const cssLoaders = extra => {
   const loaders = [
-    // 'style-loader',                // возможно нужен, пока не разобрался.. возможно нужен только для isDev
     {
       loader: MiniCssExtractPlugin.loader,
       options: {
         hmr: isDev,
         reloadAll: true,
-        publicPath: '../' /* для ссылок внутри, например для fonts и bgc-image*/
+        publicPath: '../' 
       },
     },
     'css-loader'
