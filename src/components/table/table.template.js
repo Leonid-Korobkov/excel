@@ -1,12 +1,11 @@
-const CODES = {
-  A: 65,
-  Z: 90
-}
+import { CODES } from "../../core/utils"
 
-function toCell(_, index) {
-  return `
-    <div class="cell" contenteditable="true" data-col="${index}"></div>
-  `
+function toCell(indexRow) {
+  return function(_, index) {
+    return `
+      <div class="cell" contenteditable data-type="cell" data-col="${index}" data-id="${indexRow}:${index}"></div>
+    `
+  }
 }
 
 function toColumn(col, index) {
@@ -39,11 +38,11 @@ export function createTable(rowCount = 20) {
   const rows = []
 
   const cols = new Array(colsCount).fill('').map(toChar).map(toColumn).join('')
-  const cells = new Array(colsCount).fill('').map(toCell).join('')
 
   rows.push(createRow(null, cols))
-  for (let i = 0; i < rowCount; i++) {
-    rows.push(createRow(i + 1, cells))
+  for (let indexRow = 0; indexRow < rowCount; indexRow++) {
+    const cells = new Array(colsCount).fill('').map(toCell(indexRow)).join('') 
+    rows.push(createRow(indexRow + 1, cells))
   }
 
   return rows.join('')
