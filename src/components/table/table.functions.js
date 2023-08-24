@@ -1,4 +1,5 @@
-import { range, CODES } from '../../core/utils'
+import { CODES } from '../../constants'
+import { range } from '../../core/utils'
 import { Table } from './Table'
 
 

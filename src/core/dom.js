@@ -82,6 +82,13 @@ class Dom {
     return this
   }
 
+  getStyles(styles = []) {
+    return styles.reduce((res, s) => {
+      res[s] = this.$el.style[s]
+      return res
+    }, {})
+  }
+
   id(isParse) {
     if (isParse) {
       const parsed = this.id().split(':')
@@ -94,7 +101,21 @@ class Dom {
   }
   focus() {
     this.$el.focus()
+    const range = document.createRange();
+    const selection = window.getSelection();
+    range.selectNodeContents(this.$el);
+    range.collapse(false); // Установите курсор в конец
+    selection.removeAllRanges();
+    selection.addRange(range);
     return this
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value)
+      return this
+    }
+    return this.$el.getAttribute(name, value)
   }
 }
 export function $(selector) {
