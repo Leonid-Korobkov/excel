@@ -7,11 +7,8 @@ export class Formula extends ExcelComponent {
     super($root, {
       name: 'Formula',
       listeners: ['input', 'keydown'],
+      subscribe: ['currentText'],
       ...options
-    })
-    this.$on('formula:input', data => {
-      // console.log(this.$root)
-      // this.$root.text(data)
     })
   }
 
@@ -24,13 +21,14 @@ export class Formula extends ExcelComponent {
 
   init() {
     super.init()
-    const formula = this.$root.find('#formula')
+    this.$formula = this.$root.find('#formula')
     this.$on('table:select', $cell => {
-      formula.text($cell.text())
+      this.$formula.text($cell.data.value)
     })
-    this.$on('table:input', $cell => {
-      formula.text($cell.text())
-    })
+  }
+
+  storeChanged({ currentText }) {
+    this.$formula.text(currentText)
   }
 
   onInput(event) {
@@ -44,10 +42,5 @@ export class Formula extends ExcelComponent {
       event.preventDefault()
       this.$emit('formula:done', event.target.textContent.trim())
     }
-    // console.log(event.key === 'Backspace' && event.metaKey)
-    // if (event.key === 'Backspace' && event.metaKey) {
-    //   event.preventDefault()
-    //   this.$emit('formula:input', ' ')
-    // }
   }
 }

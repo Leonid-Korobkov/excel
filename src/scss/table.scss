@@ -57,7 +57,7 @@
     color: #111;
     white-space: nowrap;
     outline: none;
-    // overflow: hidden;
+
 
     &.selected {
       border: none;
@@ -74,7 +74,6 @@
     background: $primary-color;
     opacity: 0;
     z-index: 1000;
-    // transition: opacity 0.2s ease 0s;
 
     &:hover {
       opacity: 1 !important;
