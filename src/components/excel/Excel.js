@@ -1,6 +1,7 @@
 import { Emitter } from '../../core/Emitter'
 import { $ } from '../../core/dom'
 import { StoreSubscriber } from '../../core/storeSubscriber'
+import { preventDefault } from '../../core/utils'
 import { updateDate } from '../../redux/actions'
 
 export class Excel {
