@@ -1,4 +1,4 @@
-import { DomListener } from "@core/DomListener";
+import { DomListener } from '@core/DomListener'
 
 export class ExcelComponent extends DomListener {
   constructor($root, options = {}) {
@@ -36,9 +36,7 @@ export class ExcelComponent extends DomListener {
     this.store.dispatch(action)
   }
 
-  storeChanged(changes) {
-
-  }
+  storeChanged(changes) {}
 
   isWatching(key) {
     return this.subscribe.includes(key)
@@ -53,7 +51,7 @@ export class ExcelComponent extends DomListener {
   // Удаляем компонент
   // Чистим слушатели
   destroy() {
-    this.removeDOMListeners()
     this.unsubscribers.forEach(unsub => unsub())
+    this.removeDOMlisteners()
   }
 }
