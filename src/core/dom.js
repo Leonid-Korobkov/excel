@@ -23,7 +23,8 @@ class Dom {
   }
 
   clear() {
-    this.$el.html('')
+    this.html('')
+    return this
   }
 
   append(node) {
